@@ -11,10 +11,14 @@ module.exports = {
       // fontSize: () => ({
       //   "2xl": "200px",
       // }),
+
+      height: {
+        99: "50rem",
+      },
     },
   },
   plugins: [],
-  corePlugins:{
+  corePlugins: {
     preflight: false,
-  }
+  },
 };

@@ -6,7 +6,7 @@ import React, { memo, useEffect, useMemo, useRef, useState } from "react";
 // 1.cho phép FC sử dụng được state và life cycle
 // 2. cho phép tái sử dụng logic giữa các component
 
-//danh sách hook
+//DANH SÁCH HOOK
 // 1.useState()
 // 2.useEffect()
 
@@ -16,11 +16,13 @@ import React, { memo, useEffect, useMemo, useRef, useState } from "react";
 // 4.useMemo()
 // 5.useRef()
 //  5.1 Dom trong component
+//  5.2 Chứa giá trị không bị reset lại qua các lần render
 
 const Demo = (props) => {
   const [count, setCount] = useState(0);
   const [a, setA] = useState("hieu");
   const titleref = useRef();
+  let test1 = useRef(0);
 
   useEffect(() => {
     console.log("test", count);
@@ -52,6 +54,8 @@ const Demo = (props) => {
       <button onClick={props.testMemo}>Test Memo</button>
       <button
         onClick={() => {
+          test1.current = test1.current + 1;
+          console.log("test1",test1.current);
           setCount(count + 1);
           titleref.current.style.color = "yellow";
         }}
