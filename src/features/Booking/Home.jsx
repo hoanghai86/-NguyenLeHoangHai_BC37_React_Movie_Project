@@ -11,7 +11,7 @@ import HomeCarousel from "./components/HomeCarousel";
 const Home = () => {
   return (
     <div>
-      <Header />;
+      <Header />
       <HomeCarousel />
     </div>
   );
