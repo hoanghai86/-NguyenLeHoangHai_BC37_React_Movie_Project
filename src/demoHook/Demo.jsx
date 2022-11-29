@@ -22,13 +22,9 @@ const Demo = (props) => {
   //function component khác với class component là nó không có con trỏ this, count là cái state, state sẽ render lại khi biến count này thay đổi, mà muốn đổi biến count thì phải thông qua hàm setCount
   //trong Function component thì bao nhiêu cái state cũng được
   const [count, setCount] = useState(0);
-<<<<<<< HEAD
   const [a, setA] = useState("hieu"); //muốn đổi a thì dùng hàm setA
-=======
-  const [a, setA] = useState("hieu");
   const titleref = useRef();
   let test1 = useRef(0);
->>>>>>> f663f534f6ef9225a79ba6d1fe2d24feb077b748
 
   useEffect(() => {
     console.log("test", count);
