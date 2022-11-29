@@ -15,8 +15,10 @@ import React, { memo, useEffect, useState } from "react";
 // 3.useCallBack()
 
 const Demo = (props) => {
+  //function component khác với class component là nó không có con trỏ this, count là cái state, state sẽ render lại khi biến count này thay đổi, mà muốn đổi biến count thì phải thông qua hàm setCount
+  //trong Function component thì bao nhiêu cái state cũng được
   const [count, setCount] = useState(0);
-  const [a, setA] = useState("hieu");
+  const [a, setA] = useState("hieu"); //muốn đổi a thì dùng hàm setA
 
   useEffect(() => {
     console.log("test", count);
