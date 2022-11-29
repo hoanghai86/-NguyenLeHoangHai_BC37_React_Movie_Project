@@ -20,8 +20,9 @@ function App() {
       </button>
       <h1>Count 1: {count1}</h1> */}
 
-      <Home />
       {/* <Demo testMemo={testMemo} /> */}
+      
+      <Home />
     </div>
   );
 }
