@@ -3,6 +3,7 @@ import actions from "./type";
 import requester from "app/api";
 import { apiPath } from "app/apiPath";
 
+//lấy banners từ backend để cất lên store
 export const fetchBannerAction = async (next) => {
   try {
     const res = await requester({
@@ -26,16 +27,17 @@ export const fetchBannerAction = async (next) => {
   } catch (error) {}
 };
 
+//lấy movies từ backend để cất lên store
 export const fetchMovieAction = (page = 1) => {
   return async (next) => {
     try {
       const res = await requester({
         method: "GET",
-        url: "/api/QuanLyPhim/LayDanhSachPhim",
+        url: apiPath.MOVIES,
         params: {
           maNhom: "GP01",
           soTrang: page,
-          soPhanTuTrenTrang: 10,
+          soPhanTuTrenTrang: 4,
         },
       });
 
@@ -45,6 +47,26 @@ export const fetchMovieAction = (page = 1) => {
       });
 
       console.log(res.data);
+    } catch (error) {}
+  };
+};
+
+//lấy chi tiết phim từ backend để cất lên store
+export const fetchMovieDetailAction = (id) => {
+  return async (next) => {
+    try {
+      const res = await requester({
+        url: apiPath.MOVIES_DETAIL,
+        method: "GET",
+        params: {
+          MaPhim: id,
+        },
+      });
+      // console.log(res.data);
+      next({
+        type: actions.SET_MOVIE_DETAIL,
+        payload: res.data.content,
+      });
     } catch (error) {}
   };
 };

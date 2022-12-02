@@ -4,6 +4,7 @@ import produce from "immer";
 const initialState = {
   banners: [],
   movies: {},
+  moviesDetail: null,
 };
 
 //action đã dùng destructuring
@@ -25,6 +26,10 @@ const reducer = (state = initialState, { type, payload }) => {
 
       case actions.SET_MOVIES:
         draff.movies = payload;
+        break;
+
+      case actions.SET_MOVIE_DETAIL:
+        draff.moviesDetail = payload;
         break;
 
       default:

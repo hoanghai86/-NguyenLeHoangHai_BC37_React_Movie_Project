@@ -23,7 +23,6 @@ const Home = () => {
 
   return (
     <div>
-      <Header />
       <HomeCarousel />
       <MovieList />
     </div>
