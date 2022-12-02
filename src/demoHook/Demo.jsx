@@ -26,22 +26,30 @@ const Demo = (props) => {
   const titleref = useRef();
   let test1 = useRef(0);
 
+  //đặc điểm của useEffect là nó sẽ luôn luôn chạy lần đầu tiên, khi giao diện load lên là nó chạy, khi render xong là nó chạy
+
+ 
   useEffect(() => {
     console.log("test", count);
     //clean function: chạy trước khi useEffect chạy lại, nó còn chạy trước khi state đổi
     return () => {
       console.log("clean 1", count);
     };
-  }, [a, count]);
+  }, [a, count]);  //khi component bị render lại thì useEffect này sẽ chạy khi a với count bị đổi
 
-  //mảng dependency [] là 1 mảng rỗng nên nó không bao giờ render lại
+
   useEffect(() => {
     console.log("test2222");
     //clean function: chạy khi component unmount
     return () => {
       //giống componentWillUnmount()
     };
-  }, []);
+  }, []); //useEffect này sẽ ko bao giờ chạy lại vì mảng dependency [] bị rỗng
+
+  //còn useEffect này sẽ luôn chạy lại thì nó không có mảng dependency
+    useEffect(() => {
+    console.log("test333");
+  });
 
   //mảng dependency [] là 1 mảng rỗng nên nó không bao giờ render lại
   const sum = useMemo(() => {
@@ -57,7 +65,7 @@ const Demo = (props) => {
       <button
         onClick={() => {
           test1.current = test1.current + 1;
-          console.log("test1",test1.current);
+          console.log("test1", test1.current);
           setCount(count + 1);
           titleref.current.style.color = "yellow";
         }}
