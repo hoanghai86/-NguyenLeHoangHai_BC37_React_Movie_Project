@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 import Header from "components/Header";
 import HomeCarousel from "./components/HomeCarousel";
 import { useDispatch } from "react-redux";
-import { fetchBannerAction } from "./redux/action";
-import { fetchMovieAction } from "./redux/action";
+import { fetchBannerAction, fetchCinemaAction, fetchMovieAction } from "./redux/action";
 import MovieList from "./components/MovieList";
+import { ScheduleMovie } from "./components/ScheduleMovie";
 
 //function class: có state và life cycle
 //function component: không có state và life cycle => giải pháp: react hook
@@ -17,14 +17,22 @@ const Home = () => {
 
   useEffect(() => {
     //call API
+    //set data store banner
     dispatch(fetchBannerAction);
+
+    //set data store danh sách phim
     dispatch(fetchMovieAction());
+
+    //set data store danh sách hệ thống rạp
+    dispatch(fetchCinemaAction);
+    
   }, []);
 
   return (
     <div>
       <HomeCarousel />
       <MovieList />
+      <ScheduleMovie />
     </div>
   );
 

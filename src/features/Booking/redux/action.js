@@ -35,7 +35,7 @@ export const fetchMovieAction = (page = 1) => {
         method: "GET",
         url: apiPath.MOVIES,
         params: {
-          maNhom: "GP01",
+          maNhom: "GP10",
           soTrang: page,
           soPhanTuTrenTrang: 4,
         },
@@ -52,6 +52,7 @@ export const fetchMovieAction = (page = 1) => {
 };
 
 //lấy chi tiết phim từ backend để cất lên store
+//closesure function
 export const fetchMovieDetailAction = (id) => {
   return async (next) => {
     try {
@@ -70,3 +71,40 @@ export const fetchMovieDetailAction = (id) => {
     } catch (error) {}
   };
 };
+
+
+//lấy thông tin lịch chiếu phim
+export const fetchMovieDetailScheduleAction = (id) => {
+  return async (next) => {
+    try {
+      const res = await requester({
+        url: apiPath.MOVIES_DETAIL_SCHEDULE,
+        method: "GET",
+        params: {
+          MaPhim: id,
+        },
+      });
+      // console.log(res.data);
+      next({
+        type: actions.SET_MOVIE_DETAIL_SCHEDULE,
+        payload: res.data.content,
+      });
+    } catch (error) {}
+  };
+};
+
+
+//lấy thông tin hệ thống rạp
+export const fetchCinemaAction = async (next) =>{
+  try {
+    const res = await requester({
+      method: "GET",
+      url: apiPath.CINEMAS,
+    });
+
+    next({
+      type: actions.SET_CINEMAS,
+      payload: res.data.content,
+    });
+  } catch (error) {}
+}

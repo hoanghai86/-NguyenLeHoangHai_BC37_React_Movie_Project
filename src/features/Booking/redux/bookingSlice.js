@@ -2,9 +2,11 @@ import actions from "./type";
 import produce from "immer";
 
 const initialState = {
-  banners: [],
-  movies: {},
-  moviesDetail: null,
+  banners: [], //backend trả về danh sách thì gán giá trị ban đầu là danh sách
+  movies: {}, //trả về obj thì gán obj, trả về true false thì gán true false
+  movieDetail: null, // undefined hoặc null
+  movieDetailSchedule: null,
+  cinemas: [],
 };
 
 //action đã dùng destructuring
@@ -29,7 +31,15 @@ const reducer = (state = initialState, { type, payload }) => {
         break;
 
       case actions.SET_MOVIE_DETAIL:
-        draff.moviesDetail = payload;
+        draff.movieDetail = payload;
+        break;
+
+      case actions.SET_MOVIE_DETAIL_SCHEDULE:
+        draff.movieDetailSchedule = payload;
+        break;
+
+        case actions.SET_CINEMAS:
+          draff.cinemas = payload;
         break;
 
       default:
