@@ -46,7 +46,7 @@ export const fetchMovieAction = (page = 1) => {
         payload: res.data.content,
       });
 
-      console.log(res.data);
+      // console.log(res.data);
     } catch (error) {}
   };
 };

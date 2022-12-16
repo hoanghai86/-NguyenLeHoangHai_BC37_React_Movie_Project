@@ -6,12 +6,12 @@ import { useEffect } from "react";
 
 export const ScheduleMovie = () => {
   const [listSchedule, setListSchedule] = useState([]);
-  
+  // console.log(listSchedule)
   //daanh sách hệ thống rạp
   const cinemas = useSelector((state) => state.booking.cinemas);
-  console.log(cinemas);
+  // console.log(cinemas);
 
-  //chạy 1 lần duy nhất khi co
+  //chạy phuj thuoc vao cinemas
   useEffect(() => {
     getScheduleMovieCinema(cinemas[0]?.maHeThongRap).then((res) =>
       setListSchedule(res.data.content)
@@ -35,11 +35,11 @@ export const ScheduleMovie = () => {
               listSchedule.length > 0 &&
               listSchedule[0].lstCumRap.map((itemCumRap) => {
                 return (
-                  <p>
+                  <div key={itemCumRap.maCumRap}>
                     {itemCumRap.tenCumRap}
                     <br />
                     {itemCumRap.diaChi}
-                  </p>
+                  </div>
                 );
               }),
           };
