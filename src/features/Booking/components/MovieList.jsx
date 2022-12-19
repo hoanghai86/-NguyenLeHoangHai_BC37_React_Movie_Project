@@ -100,7 +100,7 @@ const MovieList = () => {
 
       {movies.items && (
         <Pagination
-          defaultCurrent={movies.currentPage}
+          current={movies.currentPage}
           total={movies.totalCount}
           pageSize={4} 
           onChange={(page) => {
